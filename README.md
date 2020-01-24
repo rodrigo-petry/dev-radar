@@ -54,5 +54,3 @@ Para abrir o arquivo no formato `.sketch` em qualquer sistema operacional utiliz
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
 ---
-
-Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discordapp.com/invite/gCRAFhc)

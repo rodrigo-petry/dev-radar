@@ -8,6 +8,7 @@ mongoose.connect('mongodb+srv://rodrigo:gqwabc123@rodrigo-jrnk3.mongodb.net/week
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false
 });
 
 app.use(express.json());

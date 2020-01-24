@@ -6,12 +6,12 @@
   🚀 Semana OmniStack 10.0
 </h4>
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Rocketseat/semana-omnistack-10">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/rodrigo-petry/dev-radar">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Rocketseat/semana-omnistack-10">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/rodrigo-petry/dev-radar">
   
-  <a href="https://github.com/Rocketseat/semana-omnistack-10/commits/master">
-    <img alt="GitHub last commit" src="https://github.com/rodrigo-petry/dev-radar/commits/master">
+  <a href="https://github.com/rodrigo-petry/dev-radar/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rodrigo-petry/dev-radar">
   </a>
   
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">

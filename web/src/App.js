@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from './services/api';
 
 import './global.css';
 import './App.css';
@@ -6,11 +7,13 @@ import './Sidebar.css';
 import './Main.css';
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   const [github_username, setGithubUsername] = useState('');
   const [techs, setTechs] = useState('');
   
   const [latitude, setLatitude] = useState('');
-  const [longtitude, setLongitude] = useState('');
+  const [longitude, setLongitude] = useState('');
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -29,10 +32,25 @@ function App() {
     )
   }, []);
 
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
   async function handleAddDev(e) {
     e.preventDefault();
 
-    
+    const response = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude,
+    })
   }
 
   return (
@@ -82,7 +100,7 @@ function App() {
                 name="longitude" 
                 id="longitude" 
                 required 
-                value={longtitude} 
+                value={longitude} 
                 onChange={e => setLongitude(e.target.value)}
               />
             </div>
@@ -94,57 +112,24 @@ function App() {
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars3.githubusercontent.com/u/39608738?s=460&v=4" alt="Rodrigo Petry"/>
-              <div className="user-info">
-                <strong>Rodrigo Petry</strong>
-                <span>React.js, Vue.js, Node.js</span>
+          {devs.map(dev => (
+            <li key={dev._id} className="dev-item">
+              <header>
+                <img src={dev.avatar_url} alt={dev.name} />
+                
+                <div className="user-info">
+                  <strong>{dev.name}</strong>
+                  <span>{dev.techs.join(', ')}</span>
+                </div>
+              </header>
+
+              <div className="card-bio">
+                <p>{dev.bio}</p>
               </div>
-            </header>
-
-            <p>Fullstack Developer, always learning new technologies.</p>
-            <a href="https://github.com/rodrigo-petry">Acessar Perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars3.githubusercontent.com/u/39608738?s=460&v=4" alt="Rodrigo Petry"/>
-              <div className="user-info">
-                <strong>Rodrigo Petry</strong>
-                <span>React.js, Vue.js, Node.js</span>
-              </div>
-            </header>
-
-            <p>Fullstack Developer, always learning new technologies.</p>
-            <a href="https://github.com/rodrigo-petry">Acessar Perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars3.githubusercontent.com/u/39608738?s=460&v=4" alt="Rodrigo Petry"/>
-              <div className="user-info">
-                <strong>Rodrigo Petry</strong>
-                <span>React.js, Vue.js, Node.js</span>
-              </div>
-            </header>
-
-            <p>Fullstack Developer, always learning new technologies.</p>
-            <a href="https://github.com/rodrigo-petry">Acessar Perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars3.githubusercontent.com/u/39608738?s=460&v=4" alt="Rodrigo Petry"/>
-              <div className="user-info">
-                <strong>Rodrigo Petry</strong>
-                <span>React.js, Vue.js, Node.js</span>
-              </div>
-            </header>
-
-            <p>Fullstack Developer, always learning new technologies.</p>
-            <a href="https://github.com/rodrigo-petry">Acessar Perfil no Github</a>
-          </li>
+              
+              <a href={`https://github.com/${dev.github_username}`}>Acessar Perfil no Github</a>
+            </li>
+          ))}
         </ul>
       </main>
     </div>
